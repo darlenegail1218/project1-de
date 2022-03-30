@@ -16,8 +16,7 @@ pipeline {
             steps {
 				sh """
 					echo 'Creating Docker Container'
-					sudo apt-get install python3-pip
-					sudo pip install docker-compose
+					pip install docker-compose
 					docker-compose up
 				"""
             }
