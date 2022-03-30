@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Docker Build - Build Image') {
+            steps {
+				sh """
+					echo 'Building Docker Image'
+					docker build -t darlenegail1218/project1-de-images:latest .
+					docker push darlenegail1218/project1-de-images:latest
+				"""
+            }
+        }
+        stage('Create Docker Container') {
+            steps {
+				sh """
+					echo 'Creating Docker Container'
+					docker-compose up
+				"""
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}

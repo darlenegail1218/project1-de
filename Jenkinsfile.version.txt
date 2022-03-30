@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Version Tracker') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        }
+    }

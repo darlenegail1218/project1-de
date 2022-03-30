@@ -1,0 +1,5 @@
+version: '2'
+services:
+  compose-test:
+    image: darlenegail1218/project1-de-images:latest
+   
