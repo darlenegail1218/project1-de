@@ -1,5 +1,11 @@
 version: '2'
 services:
   compose-test:
-    image: darlenegail1218/project1-de-images:latest
-   
+    image: centos
+    links:
+      - compose-db
+    command: /usr/bin/curl compose-db:6379
+  compose-db:
+    image: redis
+    expose:
+      - "6379"
