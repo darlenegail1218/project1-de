@@ -1,6 +1,4 @@
 version: '2'
 services:
-  compose-db:
-    image: redis
-    expose:
-      - "6379"
+  ubuntu-test:
+    image: ubuntu
