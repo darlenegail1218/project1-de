@@ -27,7 +27,7 @@ pipeline {
                     git checkout -b v1.1
                     #git remote set-url origin https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
                     #git config remote.origin.url https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
-                    git push https://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@github.com/darlenegail1218/project1-de.git
+                    git push https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
                     #git push -u origin v1.1
                 """
             }
