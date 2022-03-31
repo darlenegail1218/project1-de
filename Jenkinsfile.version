@@ -2,13 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Setup Credentials') {
             checkout([
                 $class: 'GitSCM', 
                 branches: [[name: '*/main']], 
-                doGenerateSubmoduleConfigurations: false, 
                 extensions: [[$class: 'CleanCheckout']], 
-                submoduleCfg: [], 
                 userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
             ])
         }
