@@ -4,6 +4,10 @@ pipeline {
     stages {
         stage('Version Tracker') {
             steps {
+            sh """
+                git checkout -b v1.1
+                git push origin v.1.1
+            """
                 echo 'Building..'
             }
         }
