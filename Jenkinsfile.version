@@ -3,12 +3,14 @@ pipeline {
 
     stages {
         stage('Setup Credentials') {
-            checkout([
-                $class: 'GitSCM', 
-                branches: [[name: '*/main']], 
-                extensions: [[$class: 'CleanCheckout']], 
-                userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
-            ])
+            steps {
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/main']], 
+                    extensions: [[$class: 'CleanCheckout']], 
+                    userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
+                ])
+            }
         }
         stage('Version Tracker') {
             steps {
