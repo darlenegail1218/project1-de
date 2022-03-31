@@ -24,9 +24,9 @@ pipeline {
                 sh """
                     # darlenegail1218:Toby0113!
                     git pull origin main
-                    git -C darlenegail1218/project1-de checkout -b v1.1
-                    #git config remote.origin.url https://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@github.com/darlenegail1218/project1-de.git
-                    git -C darlenegail1218/project1-de push -u origin v1.1
+                    git checkout -b v1.1
+                    git config remote.origin.url https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
+                    git push -u origin v1.1
                 """
             }
         }
