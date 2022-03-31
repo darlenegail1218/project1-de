@@ -16,6 +16,8 @@ pipeline {
             steps {
                 sh """
                     # darlenegail1218:Toby0113!
+                    git config --global credential.helper "cache --timeout=3600"
+                    git pull origin main
                     git checkout -b v1.1
                     #git config remote.origin.url https://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@github.com/darlenegail1218/project1-de.git
                     git push -u origin v1.1
