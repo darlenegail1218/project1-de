@@ -4,12 +4,17 @@ pipeline {
     stages {
         stage('Version Tracker') {
             steps {
-            sh """
-                git checkout -b v1.1
-                git push origin v1.1
-            """
-                echo 'Building..'
+                sh """
+                    git checkout -b v1.1
+                    git push origin v1.1
+                """
             }
         }
+    }
+    post {
+        // Clean after build
+        always {
+            cleanWs()
         }
     }
+}
