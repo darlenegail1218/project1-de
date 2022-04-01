@@ -21,7 +21,7 @@ pipeline {
                     touch dummy.txt
                     git add .
                     git commit -m "Add dummy.txt"
-                    git push -u origin main
+                    git push
                 """
             }
         }
