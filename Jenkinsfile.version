@@ -18,6 +18,7 @@ pipeline {
                     userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
                 ])
                 sh """
+                    git checkout main
                     touch dummy.txt
                     git add .
                     git commit -m "Add dummy.txt"
