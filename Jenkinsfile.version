@@ -17,7 +17,7 @@ pipeline {
                     extensions: [
                         [$class: 'CloneOption', noTags: true, reference: '', shallow: true]
                     ], 
-                    userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
+                    userRemoteConfigs: [[credentialsId: '8bc27c03-cf52-4825-8e5b-15407e5e755f', url: 'https://github.com/darlenegail1218/project1-de.git']]
                 ])
                 sh """
                     git checkout main
