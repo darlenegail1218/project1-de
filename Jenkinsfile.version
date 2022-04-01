@@ -22,9 +22,10 @@ pipeline {
                 sh """
                     git checkout main
                     touch dummy.txt
-                    git add .
+                    git add dummy.txt
                     git commit -m "Add dummy.txt"
-                    git push
+                    git status
+                    git push https://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@github.com/darlenegail1218/project1-de.git
                 """
             }
         }
@@ -37,7 +38,7 @@ pipeline {
                     git config --global --list
                     #git remote set-url origin https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
                     git remote -v
-                    git push -u origin v1.1
+                    #git push -u origin v1.1
                 """
             }
         }
