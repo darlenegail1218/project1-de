@@ -20,10 +20,11 @@ pipeline {
                     userRemoteConfigs: [[credentialsId: '8bc27c03-cf52-4825-8e5b-15407e5e755f', url: 'https://github.com/darlenegail1218/project1-de.git']]
                 ])
                 sh """
-                    git checkout main
-                    touch dummy.txt
-                    git add dummy.txt
-                    git commit -m "Add dummy.txt"
+                    git checkout dev
+                    git pull
+                    touch dummy2.txt
+                    git add dummy2.txt
+                    git commit -m "Add dummy2.txt"
                     git status
                     git push https://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@github.com/darlenegail1218/project1-de.git
                 """
