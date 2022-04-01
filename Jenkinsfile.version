@@ -26,7 +26,7 @@ pipeline {
                     git add dummy2.txt
                     git commit -m "Add dummy2.txt"
                     git status
-                    git push https://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@github.com/darlenegail1218/project1-de.git
+                    git push https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
                 """
             }
         }
