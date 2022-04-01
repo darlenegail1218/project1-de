@@ -4,28 +4,25 @@ pipeline {
     stages {
         stage('Docker Build - Build Image') {
             steps {
-				sh """
-					echo 'Building Docker Image'
-					docker build -t darlenegail1218/project1-de-images:latest .
-					docker login -u "darlenegail1218" -p "padme0614" docker.io
-					docker push darlenegail1218/project1-de-images:latest
-				"""
+		withCredentials([string(credentialsId: 'dockerhub-pw', variable: 'SECRET')]) { //set SECRET with the credential content
+			sh """
+				echo 'Building Docker Image'
+				docker build -t darlenegail1218/project1-de-images:latest .
+				docker login -u "darlenegail1218" -p "${SECRET}" docker.io
+				docker push darlenegail1218/project1-de-images:latest
+			"""
+		}
             }
         }
         stage('Create Docker Container') {
             steps {
-				sh """
-					echo 'Creating Docker Container'
-					pip install docker-compose
-					chmod +x /var/lib/jenkins/.local/bin/docker-compose
-					/var/lib/jenkins/.local/bin/docker-compose up -d --remove-orphans
-					docker ps -a
-				"""
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+		sh """
+			echo 'Creating Docker Container'
+			pip install docker-compose
+			chmod +x /var/lib/jenkins/.local/bin/docker-compose
+			/var/lib/jenkins/.local/bin/docker-compose up -d --remove-orphans
+			docker ps -a
+		"""
             }
         }
     }
