@@ -6,7 +6,6 @@ pipeline {
             steps {
 				sh """
 					echo 'Building Docker Image'
-					sudo chmod 666 /var/run/docker.sock
 					docker build -t darlenegail1218/project1-de-images:latest .
 					docker login -u "darlenegail1218" -p "padme0614" docker.io
 					docker push darlenegail1218/project1-de-images:latest
