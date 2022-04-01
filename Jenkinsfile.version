@@ -35,7 +35,7 @@ pipeline {
                     git pull origin main
                     git checkout -b v1.1
                     git config --global --list
-                    git remote set-url origin https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
+                    #git remote set-url origin https://darlenegail1218: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@github.com/darlenegail1218/project1-de.git
                     git remote -v
                     git push -u origin v1.1
                 """
