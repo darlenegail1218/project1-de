@@ -14,7 +14,9 @@ pipeline {
                 checkout([
                     $class: 'GitSCM', 
                     branches: [[name: '*/main']], 
-                    extensions: [[$class: 'CleanCheckout']], 
+                    extensions: [
+                        [$class: 'CloneOption', noTags: true, reference: '', shallow: true]
+                    ], 
                     userRemoteConfigs: [[credentialsId: 'git-credentials', url: 'https://github.com/darlenegail1218/project1-de.git']]
                 ])
                 sh """
