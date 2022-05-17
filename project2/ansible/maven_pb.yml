@@ -1,0 +1,8 @@
+---
+- name: Maven Build
+  hosts: localhost
+  become: yes
+
+  tasks:
+      - name: maven build command
+        ansible.builtin.command: mvn -f ~/project2/webapp/hello-world-war/pom.xml clean package
