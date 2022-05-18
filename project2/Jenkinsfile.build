@@ -6,10 +6,10 @@ pipeline {
             steps {
 			sh """
 				echo 'Running Maven Playbook'
-                                ls -la
-                                cd project2/ansible
-                                ansible-playbook maven_pb.yml
-                                ls ../webapp/target
+                ls -la
+                cd project2/ansible
+                ansible-playbook maven_pb.yml
+                ls ../webapp/target
 			"""
 	    }
         }

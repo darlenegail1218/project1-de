@@ -1,0 +1,7 @@
+--
+- name: Maven Build
+  hosts: localhost
+  #become: yes
+
+  tasks:
+      - name:
