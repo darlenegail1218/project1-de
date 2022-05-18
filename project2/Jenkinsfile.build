@@ -2,28 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Docker Build - Build Image') {
+        stage('Run Maven Playbook') {
             steps {
-		withCredentials([string(credentialsId: 'dockerhub-pw', variable: 'SECRET')]) { //set SECRET with the credential content
 			sh """
-				echo 'Building Docker Image'
-				docker build -t darlenegail1218/project1-de-images:latest .
-				docker login -u "darlenegail1218" -p "${SECRET}" docker.io
-				docker push darlenegail1218/project1-de-images:latest
+				echo 'Running Maven Playbook'
+                                ls -la
+                                ansible-playbook ~/projects/project2/ansible/maven_pb.yml
 			"""
-		}
-            }
+	    }
         }
-        stage('Create Docker Container') {
-            steps {
-		sh """
-			echo 'Creating Docker Container'
-			pip install docker-compose
-			chmod +x /var/lib/jenkins/.local/bin/docker-compose
-			/var/lib/jenkins/.local/bin/docker-compose up -d --remove-orphans
-			docker ps -a
-		"""
-            }
-        }
-    }
+     }
 }
