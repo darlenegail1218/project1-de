@@ -9,7 +9,7 @@ pipeline {
                                 ls -la
                                 cd project2/ansible
                                 ansible-playbook maven_pb.yml
-                                ls ../webapp/
+                                ls ../webapp/target
 			"""
 	    }
         }
