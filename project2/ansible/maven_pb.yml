@@ -5,6 +5,6 @@
 
   tasks:
       - name: maven build command
-        ansible.builtin.command: | 
+        ansible.builtin.shell: | 
                 cd ../webapp 
                 mvn -f pom.xml clean package
