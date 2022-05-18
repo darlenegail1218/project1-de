@@ -1,10 +1,10 @@
 ---
 - name: Maven Build
   hosts: localhost
-  become: yes
+  #become: yes
 
   tasks:
       - name: maven build command
         ansible.builtin.command: | 
-                cd /var/lib/jenkins/projects/
-                mvn -f project2/webapp/pom.xml clean package
+                cd ../webapp 
+                mvn -f pom.xml clean package
