@@ -5,4 +5,6 @@
 
   tasks:
       - name: maven build command
-        ansible.builtin.command: mvn -f project2/webapp/pom.xml clean package
+        ansible.builtin.command: | 
+                cd /var/lib/jenkins/projects/
+                mvn -f project2/webapp/pom.xml clean package
