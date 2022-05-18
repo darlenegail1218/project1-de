@@ -7,7 +7,7 @@ pipeline {
 			sh """
 				echo 'Running Maven Playbook'
                                 ls -la
-                                cd /var/lib/jenkins/projects/project2/ansible
+                                cd project2/ansible
                                 ansible-playbook maven_pb.yml
 			"""
 	    }
