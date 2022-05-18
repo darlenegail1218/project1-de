@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Run Maven Playbook') {
+            steps {
+			sh """
+				echo 'Running Maven Playbook'
+                                ls -la
+                                ansible-playbook ~/projects/project2/ansible/maven_pb.yml
+			"""
+	    }
+        }
+     }
+}
