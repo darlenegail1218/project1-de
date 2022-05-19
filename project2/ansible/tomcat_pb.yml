@@ -7,4 +7,11 @@
       - name: Copy WAR file to the server
         ansible.builtin.shell: | 
                 #scp darlenegail1218@ip-172-31-25-234:/var/lib/jenkins/workspace/Maven-Ansible-Playbook/project2/webapp/target/hello-world-war-1.0.0.war /home/ubuntu/hello-world-war-1.0.0.war
-                aws s3 cp s3://tomcat-bucket2/hello-world-war-1.0.0.war .
+                aws s3 cp s3://tomcat-bucket2/hello-world-war-1.0.0.war /home/ubuntu/tomcat/apache-tomcat-9.0.63/webapps/
+      - name: Restart Tomcat Server
+        remote_user: Ubuntu
+        command: chdir=/home/ubuntu/tomcat/apache-tomcat-9.0.63/bin {{ item }}
+        with_items:
+           - ./shutdown.sh
+           - ./startup.sh 
+            
