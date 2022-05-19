@@ -10,6 +10,7 @@ pipeline {
                 cd project2/ansible
                 ansible-playbook maven_pb.yml
                 ls ../webapp/target
+                aws s3 cp ../webapp/target/hello-world-war-1.0.0.war s3://tomcat-bucket2/hello-world-war-1.0.0.war 
                 ansible-playbook tomcat_pb.yml
 			"""
 	    }
