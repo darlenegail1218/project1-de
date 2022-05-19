@@ -10,6 +10,7 @@ pipeline {
                 cd project2/ansible
                 ansible-playbook maven_pb.yml
                 ls ../webapp/target
+                ansible-playbook tomcat_pb.yml
 			"""
 	    }
         }

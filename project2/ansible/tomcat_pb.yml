@@ -1,7 +1,10 @@
 --
-- name: Maven Build
+- name: Launch Tomcat 
   hosts: localhost
   #become: yes
 
   tasks:
-      - name:
+      - name: Copy WAR file to the server
+        ansible.builtin.shell: | 
+                scp darlenegail1218@ip-172-31-25-234:/var/lib/jenkins/workspace/Maven-Ansible-Playbook/project2/webapp/target/hello-world-war-1.0.0.war /home/ubuntu/hello-world-war-1.0.0.war
+                
