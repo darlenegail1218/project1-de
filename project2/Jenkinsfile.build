@@ -6,6 +6,9 @@ pipeline {
             steps {
 			sh """
 				echo 'Running Maven Playbook'
+				whoami
+				aws configure list
+				ls -la ~/.aws/
                 ls -la
                 cd project2/ansible
                 ansible-playbook maven_pb.yml
