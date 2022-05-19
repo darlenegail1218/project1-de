@@ -1,6 +1,6 @@
---
+---
 - name: Launch Tomcat 
-  hosts: localhost
+  hosts: webservers
   #become: yes
 
   tasks:
