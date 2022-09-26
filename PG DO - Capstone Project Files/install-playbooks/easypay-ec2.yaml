@@ -1,0 +1,61 @@
+---
+- hosts: localhost
+  #remote_user: root
+  user: become
+  #vars_file: setup.yml
+  tasks:
+  - name: Create security group
+    ec2_group:
+      name: ec2-slfinal
+      region: us-east-1
+      description: ec2-slfinal security group
+      aws_access_key: ASIAZBALCNYQ5VLYLB53
+      aws_secret_key: rMXcenVlblW5wCT9qcU/OIpwcx1gLdUo/12XgiKj
+      security_token: FwoGZXIvYXdzEC4aDPYhre9017rRpHOojyK6ARE4rA8Sf6iQ55fEm5BSQagxSnJkGpZXN65A+ARXwiGd452kexnmLcKPL9aH3luI63Lv7pMjb28iUJCLYUnXt1BdJN4W9QharyEhxD8gLD0ARN62J+zhwiMrGB3ljD6T3Yp4aH9TqfIeqctqJO2PTDHytdZWud2fE+JGzZoojfFr0Ee3uSdnV/P6KWydpgekNa3lA8lWrqXk5mRoXtr9fbZI/1CwDgtR3oOvCXgLpqj/KVhAuJsGG1qN0yjx0b2ZBjItsiwW+KZD5JM9rfcV4evteeL69UclIl+cwvZwCpMdRKJHH4I5po3Lo0dw98nF
+      rules:
+        - proto: tcp  # ssh
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp  # http
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp  # https
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
+    register: firewall_sg
+
+
+  - name: Create a new EC2 key
+    ec2_key:
+      name: ec2-slfinal-key
+      region: us-east-1
+      aws_access_key: ASIAZBALCNYQ5VLYLB53
+      aws_secret_key: rMXcenVlblW5wCT9qcU/OIpwcx1gLdUo/12XgiKj
+      security_token: FwoGZXIvYXdzEC4aDPYhre9017rRpHOojyK6ARE4rA8Sf6iQ55fEm5BSQagxSnJkGpZXN65A+ARXwiGd452kexnmLcKPL9aH3luI63Lv7pMjb28iUJCLYUnXt1BdJN4W9QharyEhxD8gLD0ARN62J+zhwiMrGB3ljD6T3Yp4aH9TqfIeqctqJO2PTDHytdZWud2fE+JGzZoojfFr0Ee3uSdnV/P6KWydpgekNa3lA8lWrqXk5mRoXtr9fbZI/1CwDgtR3oOvCXgLpqj/KVhAuJsGG1qN0yjx0b2ZBjItsiwW+KZD5JM9rfcV4evteeL69UclIl+cwvZwCpMdRKJHH4I5po3Lo0dw98nF
+      #key_material: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+
+
+  - name: Create an EC2 instance
+    ec2:
+      key_name: ec2-slfinal-key
+      aws_access_key: ASIAZBALCNYQ5VLYLB53
+      aws_secret_key: rMXcenVlblW5wCT9qcU/OIpwcx1gLdUo/12XgiKj
+      security_token: FwoGZXIvYXdzEC4aDPYhre9017rRpHOojyK6ARE4rA8Sf6iQ55fEm5BSQagxSnJkGpZXN65A+ARXwiGd452kexnmLcKPL9aH3luI63Lv7pMjb28iUJCLYUnXt1BdJN4W9QharyEhxD8gLD0ARN62J+zhwiMrGB3ljD6T3Yp4aH9TqfIeqctqJO2PTDHytdZWud2fE+JGzZoojfFr0Ee3uSdnV/P6KWydpgekNa3lA8lWrqXk5mRoXtr9fbZI/1CwDgtR3oOvCXgLpqj/KVhAuJsGG1qN0yjx0b2ZBjItsiwW+KZD5JM9rfcV4evteeL69UclIl+cwvZwCpMdRKJHH4I5po3Lo0dw98nF
+      region: us-east-1
+      group_id: "{{ firewall_sg.group_id }}"
+      instance_type: t2.micro
+      image: ami-052efd3df9dad4825
+      wait: yes
+      instance_tags:
+          Name: easypay-ansible
+      count_tag: Name
+      exact_count: 3
+      vpc_subnet_id: subnet-01e89af24c1aa7788 # Update each time!
+      assign_public_ip: yes
+    register: ec2
